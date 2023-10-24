@@ -1,26 +1,39 @@
-import request from "../server";
+import request from "../../server";
 import Cookies from "js-cookie";
-import { TOKEN } from "../constant";
+import { TOKEN } from "../../constant";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { controlAuthenticated } from "../../redux/slices/authSlice";
+import { message } from "antd";
 
 const LoginPage = () => {
-  const submit = async (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const login = async (e) => {
+    e.preventDefault();
     try {
-      const user = {
+      let user = {
         username: e.target.username.value,
         password: e.target.password.value,
       };
 
-      const { data } = await request.post("auth/login", user);
-      Cookies.set(TOKEN, data.token);
-      e.target.username.value = "";
-      e.target.password.value = "";
-      toast.success("You logined succussfully");
-    } catch (error) {
-      toast.error("Something went wrong !");
+      console.log(user);
+
+      let { data } = await request.post("auth/login", user);
+
+      console.log(data);
+
+      if (data.user.role === "admin") {
+        navigate("/dashboard");
+        dispatch(controlAuthenticated(true));
+        Cookies.set(TOKEN, data.token);
+      } else {
+        message.error("You are not admin !");
+      }
+    } catch (err) {
+      message.error("Password or username is wrong !");
     }
   };
   return (
@@ -41,7 +54,7 @@ const LoginPage = () => {
         <h1 className="form-title">
           Login <i class="fa-solid fa-lock"></i>
         </h1>
-        <form className="form" onSubmit={submit}>
+        <form className="form" onSubmit={login}>
           <label className="form-case">
             <i className="fa-solid fa-user"></i>|
             <input id="username" type="text" placeholder="User Name" />
@@ -50,7 +63,9 @@ const LoginPage = () => {
             <i className="fa-solid fa-lock"></i>|
             <input id="password" type="password" placeholder="Password" />
           </label>
-          <Link to={"/register"}>Register?</Link>
+          <Link className="jumping" to={"/register"}>
+            Register?
+          </Link>
           <center>
             <button className="btn-white">Login</button>
           </center>

@@ -1,0 +1,40 @@
+body {
+  overflow-x: hidden !important;
+}
+.admin-layout {
+  height: 100vh;
+}
+.admin-logo {
+  padding: 24px;
+}
+.admin-logo h1 {
+  color: #fff;
+  text-shadow: 1px 2px 4px rgba(255, 255, 255, 1);
+}
+.admin-layout aside {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.admin-content {
+  margin: 84px 16px;
+  padding: 24;
+  min-height: 85vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-height: 100vh;
+  overflow: auto;
+  background: #fff;
+}
+.admin-content::-webkit-scrollbar {
+  transition: 0.5s all;
+  -webkit-appearance: none;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+
+.admin-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.admin-content::-webkit-scrollbar-track {
+  background: #ddd;
+}

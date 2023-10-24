@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import request from "../server";
+import React from "react";
+import request from "../../server";
 import Cookies from "js-cookie";
-import { TOKEN } from "../constant";
+import { TOKEN } from "../../constant";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -63,7 +63,9 @@ const RegisterPage = () => {
             <i className="fa-solid fa-lock"></i>|
             <input id="password" type="password" placeholder="Password" />
           </label>
-          <Link to={"/login"}>Login?</Link>
+          <Link className="jumping" to={"/login"}>
+            Login?
+          </Link>
           <center>
             <button className="btn-white">Register</button>
           </center>

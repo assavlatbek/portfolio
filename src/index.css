@@ -8,6 +8,22 @@
   font-family: "AR One Sans", sans-serif;
 }
 
+body::-webkit-scrollbar {
+  transition: 0.5s all;
+  -webkit-appearance: none;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+body::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
 .container {
   max-width: 1300px;
   margin: 0 auto;
@@ -51,6 +67,7 @@
 .form-container {
   padding: 20px;
   z-index: 999 !important;
+  max-width: auto;
   background: #ffffffc9;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -77,15 +94,20 @@
   margin-right: -5px;
 }
 
+.jumping {
+  display: block;
+  margin: 10px 0 !important;
+}
+
 @media (max-width: 500px) {
   .form-title {
     font-size: 25px;
   }
   .form-container {
-    padding: 10px;
+    padding: 30px;
   }
   .form-case {
-    font-size: 17px;
-    padding: 15px 50px 15px 10px;
+    font-size: 19px;
+    padding: 20px 50px 20px 15px;
   }
 }
