@@ -31,6 +31,9 @@ function Header() {
 
         <div className={`navigation ${menuOpen ? "open" : "hide"}`}>
           <div className="action">
+            <NavLink onClick={() => setMenuOpen(false)} to={"/"}>
+              Home
+            </NavLink>
             <NavLink onClick={() => setMenuOpen(false)} to={"/register"}>
               Register
             </NavLink>
