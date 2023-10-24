@@ -3,9 +3,13 @@ import request from "../../server";
 import Cookies from "js-cookie";
 import { TOKEN } from "../../constant";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { controlAuthenticated } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const submit = async (e) => {
     e.preventDefault();
 
@@ -24,6 +28,9 @@ const RegisterPage = () => {
       e.target.username.value = "";
       e.target.password.value = "";
       toast.success("You registered succussfully");
+      navigate("/user");
+      dispatch(controlAuthenticated(true));
+      Cookies.set(TOKEN, data.token);
     } catch (error) {
       toast.error("Something went wrong !");
     }

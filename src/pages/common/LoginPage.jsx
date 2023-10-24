@@ -23,17 +23,17 @@ const LoginPage = () => {
 
       let { data } = await request.post("auth/login", user);
 
-      console.log(data);
-
       if (data.user.role === "admin") {
         navigate("/dashboard");
         dispatch(controlAuthenticated(true));
         Cookies.set(TOKEN, data.token);
       } else {
-        message.error("You are not admin !");
+        navigate("/user");
+        dispatch(controlAuthenticated(true));
+        Cookies.set(TOKEN, data.token);
       }
     } catch (err) {
-      message.error("Password or username is wrong !");
+      toast.error("Password or username is wrong !");
     }
   };
   return (

@@ -8,6 +8,8 @@ import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
 import AdminLayout from "./layout/admin-layout";
 import PortfoliosPage from "./pages/admin/PortfoliosPage";
+import { ToastContainer } from "react-toastify";
+import UserPage from "./pages/user/UserPage";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -20,14 +22,18 @@ function App() {
           <Route path="register" element={<RegisterPage />} />
         </Route>
         {isAuthenticated ? (
-          <Route path="/" element={<AdminLayout />}>
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="protfolios" element={<PortfoliosPage />} />
-            <Route path="skills" element={<SkillsPage />} />
-          </Route>
+          <>
+            <Route path="/" element={<AdminLayout />}>
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="protfolios" element={<PortfoliosPage />} />
+              <Route path="skills" element={<SkillsPage />} />
+            </Route>
+            <Route path="/user" element={<UserPage />} />
+          </>
         ) : null}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }
