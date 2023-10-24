@@ -31,6 +31,7 @@ const RegisterPage = () => {
       navigate("/user");
       dispatch(controlAuthenticated(true));
       Cookies.set(TOKEN, data.token);
+      Cookies.set("ROLE", "user");
     } catch (error) {
       toast.error("Something went wrong !");
     }

@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { controlAuthenticated } from "../../redux/slices/authSlice";
-import { message } from "antd";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -27,9 +26,12 @@ const LoginPage = () => {
         navigate("/dashboard");
         dispatch(controlAuthenticated(true));
         Cookies.set(TOKEN, data.token);
+        Cookies.set("ROLE", "admin");
       } else {
         navigate("/user");
         dispatch(controlAuthenticated(true));
+        Cookies.set("ROLE", "user");
+
         Cookies.set(TOKEN, data.token);
       }
     } catch (err) {

@@ -7,6 +7,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 
 import "./style.css";
@@ -21,7 +22,11 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  console.log(location);
+
+  const styles = {
+    background: "red",
+    color: "#fff",
+  };
   return (
     <Layout className="admin-layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -47,6 +52,12 @@ const AdminLayout = () => {
               key: "/protfolios",
               icon: <UploadOutlined />,
               label: <Link to="/protfolios">Protfolios</Link>,
+            },
+            {
+              key: "/logout",
+              style: styles,
+              icon: <LogoutOutlined />,
+              label: <Link to="/logout">Logout</Link>,
             },
           ]}
         />

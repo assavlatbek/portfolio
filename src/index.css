@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600;700&display=swap");
 @import url("./css/bgAnimation.css");
 @import url("./css/HomePage.css");
+@import url("./css/DashboardPage.css");
 
 * {
   margin: 0;

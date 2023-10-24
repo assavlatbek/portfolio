@@ -10,9 +10,12 @@ import AdminLayout from "./layout/admin-layout";
 import PortfoliosPage from "./pages/admin/PortfoliosPage";
 import { ToastContainer } from "react-toastify";
 import UserPage from "./pages/user/UserPage";
+import Cookies from "js-cookie";
+import Logout from "./pages/common/Logout";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const role = Cookies.get("ROLE");
   return (
     <BrowserRouter>
       <Routes>
@@ -21,17 +24,18 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
         </Route>
-        {isAuthenticated ? (
+        {role === "admin" ? (
           <>
             <Route path="/" element={<AdminLayout />}>
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="protfolios" element={<PortfoliosPage />} />
               <Route path="skills" element={<SkillsPage />} />
             </Route>
-            <Route path="/user" element={<UserPage />} />
           </>
         ) : null}
-        <Route path="*" element={<Navigate to="/" />} />
+        {role === "user" ? <Route path="/user" element={<UserPage />} /> : null}
+        {isAuthenticated ? <Route path="/logout" element={<Logout />} /> : null}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>
