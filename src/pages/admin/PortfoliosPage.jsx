@@ -95,7 +95,6 @@ const PortfoliosPage = () => {
       setSelected(id);
       setIsModalOpen(true);
       const { data } = await getPortfolio(id);
-      console.log(data);
       form.setFieldsValue(data);
     } catch (err) {
       console.log(err);

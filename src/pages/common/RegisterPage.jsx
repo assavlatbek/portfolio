@@ -23,15 +23,11 @@ const RegisterPage = () => {
 
       const { data } = await request.post("auth/register", user);
       Cookies.set(TOKEN, data.token);
-      e.target.firstName.value = "";
-      e.target.lastName.value = "";
-      e.target.username.value = "";
-      e.target.password.value = "";
       toast.success("You registered succussfully");
-      navigate("/user");
       dispatch(controlAuthenticated(true));
       Cookies.set(TOKEN, data.token);
       Cookies.set("ROLE", "user");
+      navigate("/user");
     } catch (error) {
       toast.error("Something went wrong !");
     }

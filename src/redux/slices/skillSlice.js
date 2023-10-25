@@ -66,38 +66,6 @@ const skillSlice = createSlice({
   },
 });
 
-// const skillSlice = createSlice({
-//   initialState,
-//   name: "skill",
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(getSkills.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(
-//         getSkills.fulfilled,
-//         (state, { payload: { data, pagination } }) => {
-//           state.skills = data;
-//           state.total = pagination.total;
-//           state.loading = false;
-//         }
-//       )
-//       .addCase(getSkills.rejected, (state) => {
-//         state.loading = false;
-//       })
-//       .addCase(addSkill.pending, (state) => {
-//         state.isModalLoading = true;
-//       })
-//       .addCase(addSkill.fulfilled, (state) => {
-//         state.isModalLoading = false;
-//       })
-//       .addCase(addSkill.rejected, (state) => {
-//         state.isModalLoading = false;
-//       }).addCase;
-//   },
-// });
-
 const { name, reducer: skillReducer } = skillSlice;
 
 export { name as skillName, skillReducer as default };
