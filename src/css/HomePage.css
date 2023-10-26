@@ -24,14 +24,9 @@
 
 .hero-button {
   transition: 0.3s all;
-  background-color: #4158d0;
-  background-image: linear-gradient(
-    43deg,
-    #4158d0 0%,
-    #c850c0 46%,
-    #ffcc70 100%
-  );
-  color: #fff;
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  color: #000000;
   padding: 10px 20px;
   font-size: 19px;
   border: none;
@@ -50,13 +45,8 @@
 }
 
 .sayHI {
-  background-color: #4158d0;
-  background-image: linear-gradient(
-    43deg,
-    #4158d0 0%,
-    #c850c0 46%,
-    #ffcc70 100%
-  );
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
   font-weight: bold;
   font-size: 30px;
   color: transparent;

@@ -1,41 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [text, setText] = useState("");
-  const fullText = "Create Your Own Resume and Portfolio :)";
-  const typingSpeed = 50;
-  const backDeleteSpeed = 25;
-  const initialDelay = 1000;
-  const pauseBetweenAnimation = 1000;
 
   useEffect(() => {
-    const typeText = async () => {
-      for (let i = 0; i <= fullText.length; i++) {
-        setText(fullText.slice(0, i));
-        await new Promise((resolve) => setTimeout(resolve, typingSpeed));
-      }
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, pauseBetweenAnimation)
-      );
-
-      for (let i = fullText.length; i >= 0; i--) {
-        setText(fullText.slice(0, i));
-        await new Promise((resolve) => setTimeout(resolve, backDeleteSpeed));
-      }
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, pauseBetweenAnimation)
-      );
-
-      typeText();
-    };
-
-    setTimeout(typeText, initialDelay);
-
     const hideLoader = () => {
       setIsVisible(false);
     };
@@ -63,7 +34,20 @@ const HomePage = () => {
           <div className="container">
             <h1>
               <span className="sayHI">Hi </span>,
-              <span className="sayHI"> {text}</span>
+              <span className="sayHI">
+                {" "}
+                <TypeAnimation
+                  sequence={[
+                    "Do You want to Create Your Portfolio and Resume?",
+                    1300,
+                    "Just Register and try, it is so fun!",
+                    1300,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </span>
             </h1>
             <p>
               You can create your own resume and portfolio using this website,
