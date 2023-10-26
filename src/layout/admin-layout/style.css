@@ -6,10 +6,18 @@ body {
 }
 .admin-logo {
   padding: 24px;
+  display: flex;
+  justify-content: start;
 }
 .admin-logo h1 {
+  transition: 0.3s all;
   color: #fff;
   text-shadow: 1px 2px 4px rgba(255, 255, 255, 1);
+}
+.logo-style {
+  transition: 0.3s all;
+  color: #fff;
+  margin-left: -10px;
 }
 .admin-layout aside {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

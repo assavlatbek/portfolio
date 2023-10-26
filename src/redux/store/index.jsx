@@ -7,17 +7,21 @@ import authReducer from "../slices/authSlice";
 import portfolioReducer, {
   portfolioService,
 } from "../services/portfolioService";
+import userReducer, { userServices } from "../services/userService";
 
 const reducer = {
   skill: skillReducer,
   auth: authReducer,
   [portfolioService.reducerPath]: portfolioReducer,
+  [userServices.reducerPath]: userReducer,
 };
 
 export const Store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(portfolioService.middleware),
+    getDefaultMiddleware()
+      .concat(portfolioService.middleware)
+      .concat(userServices.middleware),
 });
 
 const StoreProvider = ({ children }) => {

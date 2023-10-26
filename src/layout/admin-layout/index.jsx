@@ -8,6 +8,9 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   LogoutOutlined,
+  UsergroupAddOutlined,
+  AuditOutlined,
+  BankOutlined,
 } from "@ant-design/icons";
 
 import "./style.css";
@@ -26,12 +29,14 @@ const AdminLayout = () => {
   const styles = {
     background: "red",
     color: "#fff",
+    position: "absolute",
+    bottom: "0",
   };
   return (
     <Layout className="admin-layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="admin-logo">
-          <h1>RIO</h1>
+          <h1 className={collapsed ? "logo-style" : null}>A.S.R</h1>
         </div>
         <Menu
           theme="dark"
@@ -52,6 +57,21 @@ const AdminLayout = () => {
               key: "/protfolios",
               icon: <UploadOutlined />,
               label: <Link to="/protfolios">Protfolios</Link>,
+            },
+            {
+              key: "/experiences",
+              icon: <AuditOutlined />,
+              label: <Link to="/experiences">Experiences</Link>,
+            },
+            {
+              key: "/education",
+              icon: <BankOutlined />,
+              label: <Link to="/education">Education</Link>,
+            },
+            {
+              key: "/users",
+              icon: <UsergroupAddOutlined />,
+              label: <Link to="/users">Users</Link>,
             },
             {
               key: "/logout",

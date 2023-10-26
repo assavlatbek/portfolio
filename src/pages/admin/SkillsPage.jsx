@@ -42,6 +42,7 @@ const SkillsPage = () => {
 
   const showModal = () => {
     setIsModalOpen(true);
+    form.resetFields();
   };
 
   const closeModal = () => {
@@ -58,6 +59,7 @@ const SkillsPage = () => {
     refetch();
     setIsModalOpen(false);
     form.resetFields();
+    setSelected(null);
   };
 
   const handleSearch = (e) => {

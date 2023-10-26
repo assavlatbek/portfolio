@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   const [text, setText] = useState("");
   const fullText = "Create Your Own Resume and Portfolio :)";
-  const typingSpeed = 50; // Speed in milliseconds per character
-  const backDeleteSpeed = 25; // Speed for back-deleting
-  const initialDelay = 1000; // Delay before typing starts
-  const pauseBetweenAnimation = 1000; // Delay between animations
+  const typingSpeed = 50;
+  const backDeleteSpeed = 25;
+  const initialDelay = 1000;
+  const pauseBetweenAnimation = 1000;
 
   useEffect(() => {
     const typeText = async () => {
@@ -30,10 +30,9 @@ const HomePage = () => {
         setTimeout(resolve, pauseBetweenAnimation)
       );
 
-      typeText(); // Loop for continuous animation
+      typeText();
     };
 
-    // Delay before typing starts
     setTimeout(typeText, initialDelay);
   }, []);
 

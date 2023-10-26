@@ -12,6 +12,9 @@ import { ToastContainer } from "react-toastify";
 import UserPage from "./pages/user/UserPage";
 import Cookies from "js-cookie";
 import Logout from "./pages/common/Logout";
+import Users from "./pages/admin/Users";
+import Education from "./pages/admin/Education";
+import Experiences from "./pages/admin/Experiences";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -30,6 +33,9 @@ function App() {
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="protfolios" element={<PortfoliosPage />} />
               <Route path="skills" element={<SkillsPage />} />
+              <Route path="users" element={<Users />} />
+              <Route path="education" element={<Education />} />
+              <Route path="experiences" element={<Experiences />} />
             </Route>
           </>
         ) : null}
