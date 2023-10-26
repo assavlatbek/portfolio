@@ -83,6 +83,7 @@ const AdminLayout = () => {
         <Header className="admin-layout-header">
           <Button
             type="text"
+            className="header-hide-button"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{

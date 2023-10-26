@@ -56,3 +56,21 @@ body {
 .admin-layout-header svg {
   fill: #fff;
 }
+@media (max-width: 600px) {
+  aside {
+    flex: 0 0 80px !important;
+    max-width: 70px !important;
+    min-width: 70px !important;
+    width: 70px !important;
+  }
+  .admin-logo h1 {
+    transition: 0.3s all;
+    color: #fff;
+    margin-left: -16px;
+  }
+  .header-hide-button {
+    display: none !important;
+    opacity: 0 !important;
+    fill: transparent !important;
+  }
+}
