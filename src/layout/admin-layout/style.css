@@ -73,4 +73,8 @@ body {
     opacity: 0 !important;
     fill: transparent !important;
   }
+  .admin-content {
+    margin: 72px 7px 30px 7px;
+    padding: 10;
+  }
 }
