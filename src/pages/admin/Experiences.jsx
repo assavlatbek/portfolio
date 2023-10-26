@@ -47,10 +47,10 @@ const Experiences = () => {
       key: "companyName",
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-      render: (text) => (text.length > 50 ? `${text.slice(0, 50)}...` : text),
+      title: "Employee",
+      dataIndex: "user",
+      key: "user",
+      render: (text) => (text ? text.username : "Savlatbek"),
     },
     {
       title: "Start Date",

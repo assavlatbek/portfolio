@@ -63,7 +63,7 @@ const DashboardPage = () => {
         </div>
       </div>
       <section className="dashboard-section">
-        <h1>Dashboard:</h1>
+        <h1 className="dashboard-page-name">Dashboard:</h1>
         <Row gutter={16}>
           <Col style={{ margin: "10px 0" }} span={24} lg={6}>
             <div className="dashboard-card">
