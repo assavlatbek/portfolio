@@ -6,10 +6,8 @@ import {
   UsergroupAddOutlined,
   BankOutlined,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import CountUp from "react-countup"; // Import the CountUp component
+import CountUp from "react-countup";
 import request from "../../server";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const DashboardPage = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -18,8 +16,6 @@ const DashboardPage = () => {
   const [education, setEducation] = useState(0);
   const [portfolios, setPortfolios] = useState(0);
   const [bigTxt, setBigTxt] = useState(false);
-
-  const navigate = useNavigate();
 
   const getSkills = async () => {
     const { data } = await request.get("skills");
@@ -95,7 +91,7 @@ const DashboardPage = () => {
               </div>
             </div>
           </Col>
-          <Col style={{ margin: "10px 0" }} spanm={24} lg={6}>
+          <Col style={{ margin: "10px 0" }} span={24} lg={6}>
             <div className="dashboard-card">
               <div className="dashboard-card-container">
                 <div className="icon">
@@ -148,7 +144,7 @@ const DashboardPage = () => {
               </div>
             </div>
           </Col>
-          <Col style={{ margin: "10px 0" }} spanm={24} lg={6}>
+          <Col style={{ margin: "10px 0" }} span={24} lg={6}>
             <div className="dashboard-card">
               <div className="dashboard-card-container">
                 <div className="icon">
