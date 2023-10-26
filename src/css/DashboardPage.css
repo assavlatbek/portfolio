@@ -1,3 +1,49 @@
 .dashboard-section {
   padding: 10px;
 }
+.dashboard-card {
+  width: 100% !important;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dashboard-card-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboard-card-container .icon {
+  font-size: 20px;
+  margin-left: -20px;
+  background: #ff3401;
+  padding: 10px;
+  border-radius: 10px;
+}
+.dashboard-card .icon svg {
+  fill: #fff;
+}
+
+.dashboard-card .txt p {
+  position: relative;
+  font-size: 24px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.dashboard-card .txt p::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: rgb(229, 255, 0);
+}
+.bigTXT h3 {
+  transition: 0.7s;
+  font-size: 22px;
+}

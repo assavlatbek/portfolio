@@ -13,7 +13,8 @@ export const portfolioService = createApi({
   }),
   endpoints: (builder) => ({
     getPortfolios: builder.query({
-      query: (page) => `portfolios?page=${page}`,
+      query: (params) =>
+        `portfolios?page=${params.page}&search=${params.search}`,
       transformResponse: (res) => res,
     }),
     getPortfolio: builder.mutation({

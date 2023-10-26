@@ -1,15 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Flex,
-  Form,
-  Input,
-  Modal,
-  Pagination,
-  Space,
-  Table,
-} from "antd";
+import { Button, Form, Input, Modal, Pagination, Space, Table } from "antd";
 import {
   addSkill,
   deleteSkill,
@@ -47,6 +38,8 @@ const SkillsPage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    form.resetFields();
   };
 
   const handleOk = async () => {
@@ -117,9 +110,12 @@ const SkillsPage = () => {
         scroll={{
           x: 1000,
         }}
+        bordered
         title={() => (
-          <Flex justify="space-between" gap={36} align="center">
-            <h1>Skills ({total})</h1>
+          <div className="table-header">
+            <h1 style={{ margin: "0" }}>
+              Skills <b>({total})</b>
+            </h1>
             <Input
               value={search}
               onChange={handleSearch}
@@ -129,7 +125,7 @@ const SkillsPage = () => {
             <Button onClick={showModal} type="primary">
               Add skill
             </Button>
-          </Flex>
+          </div>
         )}
         pagination={false}
         loading={loading}
@@ -149,7 +145,7 @@ const SkillsPage = () => {
       </center>
       <br />
       <Modal
-        title="Category data"
+        title={selected ? "Save old Skill" : "Add new Skill"}
         maskClosable={false}
         confirmLoading={isModalLoading}
         okText={selected === null ? "Add skill" : "Save skill"}

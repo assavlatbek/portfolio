@@ -5,6 +5,7 @@ import StoreProvider from "./redux/store";
 
 import "antd/dist/reset.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./index.css";
 import App from "./App";
 

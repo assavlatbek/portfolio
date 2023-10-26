@@ -7,14 +7,17 @@ import {
   useGetUsersQuery,
   useUpdateUserMutation,
 } from "../../redux/services/userService";
+import Password from "antd/es/input/Password";
 
 const Users = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
 
-  const { data, isFetching, refetch } = useGetUsersQuery(page);
+  const params = { page, search };
+  const { data, isFetching, refetch } = useGetUsersQuery(params);
 
   const [getUser] = useGetUserMutation();
   const [addUser] = useAddUserMutation();
@@ -33,9 +36,14 @@ const Users = () => {
       key: "lastName",
     },
     {
-      title: "Username",
+      title: "User Name",
       dataIndex: "username",
       key: "username",
+    },
+    {
+      title: "Password",
+      dataIndex: "pasword",
+      key: "pasword",
     },
     {
       title: "Action",
@@ -63,6 +71,8 @@ const Users = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    form.resetFields();
   };
 
   const openModal = () => {
@@ -97,6 +107,9 @@ const Users = () => {
       console.log(err);
     }
   }
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
 
   return (
     <Fragment>
@@ -104,14 +117,16 @@ const Users = () => {
         bordered
         loading={isFetching}
         title={() => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h1>Users ({data?.pagination.total})</h1>
+          <div className="table-header">
+            <h1 style={{ margin: "0" }}>
+              Users <b>({data?.pagination.total})</b>
+            </h1>
+            <Input
+              onChange={handleSearch}
+              value={search}
+              style={{ width: "auto", flexGrow: 1 }}
+              placeholder="Searching..."
+            />
             <Button type="primary" onClick={openModal}>
               Add user
             </Button>
@@ -123,6 +138,7 @@ const Users = () => {
         pagination={false}
       />
       <br />
+
       <center>
         <Pagination
           total={data?.pagination.total}
@@ -132,7 +148,7 @@ const Users = () => {
       </center>
       <br />
       <Modal
-        title="Category data"
+        title={selected ? "Save old User" : "Add new User"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={closeModal}
@@ -187,6 +203,18 @@ const Users = () => {
             ]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please fill !",
+              },
+            ]}
+          >
+            <Password />
           </Form.Item>
         </Form>
       </Modal>

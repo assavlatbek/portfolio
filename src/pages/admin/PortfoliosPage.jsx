@@ -12,9 +12,13 @@ const PortfoliosPage = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
-
-  const { data, isFetching, refetch } = useGetPortfoliosQuery(page);
+  const params = {
+    page,
+    search,
+  };
+  const { data, isFetching, refetch } = useGetPortfoliosQuery(params);
 
   const [getPortfolio] = useGetPortfolioMutation();
   const [addPortfolio] = useAddPortfolioMutation();
@@ -68,6 +72,8 @@ const PortfoliosPage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    form.resetFields();
   };
 
   const openModal = () => {
@@ -103,20 +109,26 @@ const PortfoliosPage = () => {
     }
   }
 
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+
   return (
     <Fragment>
       <Table
         bordered
         loading={isFetching}
         title={() => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h1>Portfolios ({data?.pagination.total})</h1>
+          <div className="table-header">
+            <h1 style={{ margin: "0" }}>
+              Portfolios <b>({data?.pagination.total})</b>
+            </h1>
+            <Input
+              onChange={handleSearch}
+              value={search}
+              style={{ width: "auto", flexGrow: 1 }}
+              placeholder="Searching..."
+            />
             <Button type="primary" onClick={openModal}>
               Add portfolio
             </Button>
@@ -137,7 +149,7 @@ const PortfoliosPage = () => {
       </center>
       <br />
       <Modal
-        title="Category data"
+        title={selected ? "Save old portfolio" : "Add new portfolio"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={closeModal}

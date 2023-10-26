@@ -15,22 +15,19 @@ import {
 
 import "./style.css";
 
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, Button } from "antd";
 
 const { Header, Sider, Content } = Layout;
 
 const AdminLayout = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
   const styles = {
     background: "red",
     color: "#fff",
     position: "absolute",
-    bottom: "0",
+    bottom: "12px",
   };
   return (
     <Layout className="admin-layout">
@@ -54,9 +51,9 @@ const AdminLayout = () => {
               label: <Link to="/skills">Skills</Link>,
             },
             {
-              key: "/protfolios",
+              key: "/portfolios",
               icon: <UploadOutlined />,
-              label: <Link to="/protfolios">Protfolios</Link>,
+              label: <Link to="/portfolios">Portfolios</Link>,
             },
             {
               key: "/experiences",
@@ -83,14 +80,7 @@ const AdminLayout = () => {
         />
       </Sider>
       <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <Header className="admin-layout-header">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

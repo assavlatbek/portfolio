@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import { ENDIPOINT, TOKEN } from "../../constant";
 
-export const userServices = createApi({
-  reducerPath: "users",
+export const educationService = createApi({
+  reducerPath: "education",
   baseQuery: fetchBaseQuery({
     baseUrl: `${ENDIPOINT}api/v1/`,
     prepareHeaders: (headers) => {
@@ -12,33 +12,34 @@ export const userServices = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query({
-      query: (params) => `users?page=${params.page}&search=${params.search}`,
+    getEducations: builder.query({
+      query: (params) =>
+        `education?page=${params.page}&search=${params.search}`,
       transformResponse: (res) => res,
     }),
-    getUser: builder.mutation({
+    getEducation: builder.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `education/${id}`,
         method: "GET",
       }),
     }),
-    addUser: builder.mutation({
+    addEducation: builder.mutation({
       query: (body) => ({
-        url: "users",
+        url: "education",
         method: "POST",
         body,
       }),
     }),
-    updateUser: builder.mutation({
+    updateEducation: builder.mutation({
       query: ({ id, body }) => ({
-        url: `users/${id}`,
+        url: `education/${id}`,
         method: "PUT",
         body,
       }),
     }),
-    deleteUser: builder.mutation({
+    deleteEducation: builder.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `education/${id}`,
         method: "DELETE",
       }),
     }),
@@ -46,11 +47,11 @@ export const userServices = createApi({
 });
 
 export const {
-  useGetUsersQuery,
-  useGetUserMutation,
-  useAddUserMutation,
-  useUpdateUserMutation,
-  useDeleteUserMutation,
-} = userServices;
+  useGetEducationsQuery,
+  useGetEducationMutation,
+  useAddEducationMutation,
+  useUpdateEducationMutation,
+  useDeleteEducationMutation,
+} = educationService;
 
-export default userServices.reducer;
+export default educationService.reducer;

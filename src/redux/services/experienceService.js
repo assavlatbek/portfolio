@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import { ENDIPOINT, TOKEN } from "../../constant";
 
-export const userServices = createApi({
-  reducerPath: "users",
+export const experienceService = createApi({
+  reducerPath: "experiences",
   baseQuery: fetchBaseQuery({
     baseUrl: `${ENDIPOINT}api/v1/`,
     prepareHeaders: (headers) => {
@@ -12,33 +12,34 @@ export const userServices = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query({
-      query: (params) => `users?page=${params.page}&search=${params.search}`,
+    getExperiences: builder.query({
+      query: (params) =>
+        `experiences?page=${params.page}&search=${params.search}`,
       transformResponse: (res) => res,
     }),
-    getUser: builder.mutation({
+    getExperience: builder.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `experiences/${id}`,
         method: "GET",
       }),
     }),
-    addUser: builder.mutation({
+    addExperience: builder.mutation({
       query: (body) => ({
-        url: "users",
+        url: "experiences",
         method: "POST",
         body,
       }),
     }),
-    updateUser: builder.mutation({
+    updateExperience: builder.mutation({
       query: ({ id, body }) => ({
-        url: `users/${id}`,
+        url: `experiences/${id}`,
         method: "PUT",
         body,
       }),
     }),
-    deleteUser: builder.mutation({
+    deleteExperience: builder.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `experiences/${id}`,
         method: "DELETE",
       }),
     }),
@@ -46,11 +47,11 @@ export const userServices = createApi({
 });
 
 export const {
-  useGetUsersQuery,
-  useGetUserMutation,
-  useAddUserMutation,
-  useUpdateUserMutation,
-  useDeleteUserMutation,
-} = userServices;
+  useGetExperiencesQuery,
+  useGetExperienceMutation,
+  useAddExperienceMutation,
+  useUpdateExperienceMutation,
+  useDeleteExperienceMutation,
+} = experienceService;
 
-export default userServices.reducer;
+export default experienceService.reducer;
