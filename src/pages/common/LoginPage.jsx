@@ -18,6 +18,8 @@ const LoginPage = () => {
         password: e.target.password.value,
       };
 
+      console.log(user);
+
       let { data } = await request.post("auth/login", user);
 
       if (data.user.role === "admin") {

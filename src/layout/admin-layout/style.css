@@ -1,27 +1,32 @@
 body {
   overflow-x: hidden !important;
 }
+
 .admin-layout {
   height: 100vh;
 }
+
 .admin-logo {
   padding: 24px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start; /* Update this line */
 }
+
 .admin-logo h1 {
   transition: 0.3s all;
   color: #fff;
   text-shadow: 1px 2px 4px rgba(255, 255, 255, 1);
 }
+
 .logo-style {
   transition: 0.3s all;
   color: #fff;
   margin-left: -10px;
 }
+
 .admin-content {
   margin: 84px 16px;
-  padding: 24;
+  padding: 24px; /* Add 'px' unit here */
   min-height: 85vh;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -29,6 +34,7 @@ body {
   overflow: auto;
   background: #fff;
 }
+
 .admin-content::-webkit-scrollbar {
   transition: 0.5s all;
   width: 5px;
@@ -53,9 +59,86 @@ body {
   border-left: 1px solid #fff;
   align-items: center;
 }
+
 .admin-layout-header svg {
   fill: #fff;
 }
+
+.notif_container {
+  position: fixed;
+  left: 95%;
+  cursor: pointer;
+  user-select: none;
+  animation: vibrate 0.1s linear 10;
+}
+
+.notif_icon {
+  width: 25px;
+  height: 25px;
+  filter: invert(100%);
+}
+
+.notif_count {
+  position: relative;
+  text-align: center;
+  top: 15px;
+  right: 10px;
+  background: red;
+  border-radius: 15px;
+  padding: 3px;
+  font-weight: bold;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.hidden-content {
+  transition: 0.7s all;
+  position: absolute;
+  top: -900px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #393434;
+  padding: 0 10px;
+  color: #fff;
+}
+
+.hidden-content-open {
+  transition: 0.5s all;
+  top: 80px;
+  width: 350px;
+  border-radius: 5px;
+  height: 500px;
+}
+
+.hidden-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.hidden-content::-webkit-scrollbar-track {
+  background: #001529;
+}
+
+.hidden-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.hidden-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.user-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  margin: 10px 0;
+}
+
 @media (max-width: 600px) {
   aside {
     flex: 0 0 80px !important;
@@ -63,18 +146,45 @@ body {
     min-width: 70px !important;
     width: 70px !important;
   }
+
   .admin-logo h1 {
     transition: 0.3s all;
     color: #fff;
     margin-left: -16px;
   }
+
   .header-hide-button {
     display: none !important;
     opacity: 0 !important;
     fill: transparent !important;
   }
+
   .admin-content {
     margin: 72px 7px 30px 7px;
-    padding: 10;
+    padding: 10px;
+  }
+
+  .notif_container {
+    display: none;
+  }
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
+    padding: 0;
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+    padding: 0;
   }
 }

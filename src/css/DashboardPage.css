@@ -55,6 +55,6 @@
   font-weight: bold;
   font-size: 30px;
   color: transparent;
-  background-clip: text; /* Clip the background to the text content */
+  background-clip: text;
   -webkit-background-clip: text;
 }

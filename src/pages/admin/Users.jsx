@@ -41,9 +41,9 @@ const Users = () => {
       key: "username",
     },
     {
-      title: "Password",
-      dataIndex: "pasword",
-      key: "pasword",
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
     },
     {
       title: "Action",

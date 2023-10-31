@@ -15,16 +15,28 @@ import Logout from "./pages/common/Logout";
 import Users from "./pages/admin/Users";
 import Education from "./pages/admin/Education";
 import Experiences from "./pages/admin/Experiences";
+import { useEffect, useState } from "react";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const role = Cookies.get("ROLE");
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    const roleCookie = Cookies.get("ROLE");
+    setRole(roleCookie);
+  }, [isAuthenticated]);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<FrontLayout />} path="/">
           <Route path="" element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="login"
+            element={
+              role === "admin" ? <Navigate to={"/dashboard"} /> : <LoginPage />
+            }
+          />
           <Route path="register" element={<RegisterPage />} />
         </Route>
         {role === "admin" ? (
