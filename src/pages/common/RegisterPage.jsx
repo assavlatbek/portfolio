@@ -22,12 +22,14 @@ const RegisterPage = () => {
       };
 
       const { data } = await request.post("auth/register", user);
-      Cookies.set(TOKEN, data.token);
       toast.success("You registered succussfully");
-      dispatch(controlAuthenticated(true));
       Cookies.set(TOKEN, data.token);
       Cookies.set("ROLE", "user");
-      navigate("/user");
+      Cookies.set("user_id", data.user._id);
+      dispatch(controlAuthenticated(true));
+      setTimeout(() => {
+        window.location.href = "/user";
+      }, 300);
     } catch (error) {
       toast.error("Something went wrong !");
     }

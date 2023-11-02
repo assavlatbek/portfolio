@@ -3,6 +3,7 @@
 @import url("./css/HomePage.css");
 @import url("./css/DashboardPage.css");
 @import url("./css/Loader.css");
+@import url("./css/User.css");
 
 * {
   margin: 0;
@@ -26,6 +27,27 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-track {
   background: #ddd;
 }
+
+/* colors */
+
+.text-primary {
+  color: #006eff;
+}
+
+.text-success {
+  color: #33ff00;
+}
+
+.text-warning {
+  color: rgb(246, 255, 0);
+}
+
+.username {
+  font-style: italic;
+  font-weight: 900;
+}
+
+/*  */
 
 .container {
   max-width: 1300px;

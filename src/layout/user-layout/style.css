@@ -2,17 +2,17 @@ body {
   overflow-x: hidden !important;
 }
 
-.admin-layout {
+.user-layout {
   height: 100vh;
 }
 
-.admin-logo {
+.user-logo {
   padding: 24px;
   display: flex;
-  justify-content: flex-start; /* Update this line */
+  justify-content: flex-start;
 }
 
-.admin-logo h1 {
+.user-logo h1 {
   transition: 0.3s all;
   color: #fff;
   text-shadow: 1px 2px 4px rgba(255, 255, 255, 1);
@@ -24,7 +24,7 @@ body {
   margin-left: -10px;
 }
 
-.admin-content {
+.user-content {
   margin: 84px 16px;
   padding: 24px; /* Add 'px' unit here */
   min-height: 85vh;
@@ -35,7 +35,7 @@ body {
   background: #fff;
 }
 
-.admin-content::-webkit-scrollbar {
+.user-content::-webkit-scrollbar {
   transition: 0.5s all;
   width: 5px;
   border-radius: 8px;
@@ -43,15 +43,15 @@ body {
   right: 0;
 }
 
-.admin-content::-webkit-scrollbar-thumb {
+.user-content::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-.admin-content::-webkit-scrollbar-track {
+.user-content::-webkit-scrollbar-track {
   background: #ddd;
 }
 
-.admin-layout-header {
+.user-layout-header {
   padding: 0;
   background: #001529;
   display: flex;
@@ -60,13 +60,13 @@ body {
   align-items: center;
 }
 
-.admin-layout-header svg {
+.user-layout-header svg {
   fill: #fff;
 }
 
 .notif_container {
   position: fixed;
-  left: 95%;
+  left: 91%;
   cursor: pointer;
   user-select: none;
   animation: vibrate 0.1s linear 10;
@@ -139,6 +139,19 @@ body {
   margin: 10px 0;
 }
 
+.user-avatar {
+  position: fixed;
+  left: 95%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.user-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
 @media (max-width: 600px) {
   aside {
     flex: 0 0 80px !important;
@@ -147,7 +160,7 @@ body {
     width: 70px !important;
   }
 
-  .admin-logo h1 {
+  .user-logo h1 {
     transition: 0.3s all;
     color: #fff;
     margin-left: -16px;
@@ -159,7 +172,7 @@ body {
     fill: transparent !important;
   }
 
-  .admin-content {
+  .user-content {
     margin: 72px 7px 30px 7px;
     padding: 10px;
   }

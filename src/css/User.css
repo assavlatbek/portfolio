@@ -1,0 +1,38 @@
+.user-request {
+  width: 100%;
+  height: 100vh;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/1/11/WarpTrails2.gif"),
+    no-repeat;
+  background-size: cover;
+  background-position: 70%;
+}
+.bg-opacity-effect {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0000001d;
+}
+.user-request * {
+  transition: 0.5s all;
+  color: rgb(255, 255, 255);
+}
+.user-button {
+  transition: 0.5s all;
+  padding: 10px 20px;
+  font-style: 19px;
+  cursor: pointer;
+  border: 1px dashed red;
+  background: transparent;
+  color: red;
+}
+.user-button:hover {
+  transform: scale(1.1);
+  letter-spacing: 2px;
+}
+@media (max-width: 700px) {
+  .user-request {
+    background-position: 50%;
+  }
+}

@@ -54,7 +54,7 @@ const HomePage = () => {
               so login and try, are you ready to get Start?
             </p>
             <br />
-            <Link to={"/login"} className="hero-button">
+            <Link to={"/register"} className="hero-button">
               Get Started
             </Link>
           </div>

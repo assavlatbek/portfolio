@@ -18,21 +18,25 @@ const LoginPage = () => {
         password: e.target.password.value,
       };
 
-      console.log(user);
-
       let { data } = await request.post("auth/login", user);
-
       if (data.user.role === "admin") {
-        navigate("/dashboard");
-        dispatch(controlAuthenticated(true));
+        toast.success("You logined successfully");
         Cookies.set(TOKEN, data.token);
         Cookies.set("ROLE", "admin");
-      } else {
-        navigate("/user");
+        Cookies.set("admin_id", data.user._id);
         dispatch(controlAuthenticated(true));
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 300);
+      } else {
+        toast.success("You logined successfully");
         Cookies.set("ROLE", "user");
-
         Cookies.set(TOKEN, data.token);
+        Cookies.set("user_id", data.user._id);
+        dispatch(controlAuthenticated(true));
+        setTimeout(() => {
+          window.location.href = "/user";
+        }, 300);
       }
     } catch (err) {
       toast.error("Password or username is wrong !");
