@@ -127,7 +127,7 @@ const UserLayout = () => {
             />
           </Link>
         </Header>
-        <Content className="user-content">
+        <Content className="user-content-main">
           <Outlet />
         </Content>
       </Layout>

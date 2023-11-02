@@ -24,7 +24,7 @@ body {
   margin-left: -10px;
 }
 
-.user-content {
+.user-content-main {
   margin: 84px 16px !important;
   padding: 24px !important;
   min-height: 85vh;
@@ -36,7 +36,7 @@ body {
   background: #fff;
 }
 
-.user-content::-webkit-scrollbar {
+.user-content-main::-webkit-scrollbar {
   transition: 0.5s all;
   width: 5px;
   border-radius: 8px;
@@ -44,11 +44,11 @@ body {
   right: 0;
 }
 
-.user-content::-webkit-scrollbar-thumb {
+.user-content-main::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-.user-content::-webkit-scrollbar-track {
+.user-content-main::-webkit-scrollbar-track {
   background: #ddd;
 }
 
@@ -98,7 +98,7 @@ body {
     fill: transparent !important;
   }
 
-  .user-content {
+  .user-content-main {
     margin: 72px 7px 30px 7px;
     padding: 10px;
   }
