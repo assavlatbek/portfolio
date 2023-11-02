@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import HomePage from "./pages/common/HomePage";
 import DashboardPage from "./pages/admin/DashboardPage";
@@ -6,7 +6,6 @@ import SkillsPage from "./pages/admin/SkillsPage";
 import FrontLayout from "./layout/front-layout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
-import AdminLayout from "./layout/user-layout";
 import PortfoliosPage from "./pages/admin/PortfoliosPage";
 import { ToastContainer } from "react-toastify";
 import UserPage from "./pages/user/UserPage";
@@ -19,6 +18,9 @@ import AccountPage from "./pages/admin/AccountPage";
 import ProfilePage from "./pages/user/ProfilePage";
 import UserLayout from "./layout/user-layout";
 import NotFound from "./pages/common/NotFound";
+import EducationPage from "./pages/user/EducationPage";
+import Skills from "./pages/user/Skills";
+import AdminLayout from "./layout/admin-layout";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -49,11 +51,13 @@ function App() {
           <>
             <Route path="/" element={<UserLayout />}>
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="as-education" element={<EducationPage />} />
+              <Route path="as-skills" element={<Skills />} />
             </Route>
           </>
         ) : null}
-        {role === "user" ? <Route path="/user" element={<UserPage />} /> : null}
         {isAuthenticated ? <Route path="/logout" element={<Logout />} /> : null}
+        {role === "user" && <Route path="/user" element={<UserPage />} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />

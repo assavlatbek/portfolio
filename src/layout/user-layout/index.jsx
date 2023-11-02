@@ -87,13 +87,13 @@ const UserLayout = () => {
             {
               key: "/skills",
               icon: <VideoCameraOutlined />,
-              label: <Link to="/skills">Skills</Link>,
+              label: <Link to="/as-skills">Skills</Link>,
             },
 
             {
               key: "/education",
               icon: <BankOutlined />,
-              label: <Link to="/education">Education</Link>,
+              label: <Link to="/as-education">Education</Link>,
             },
             {
               key: "/logout",
@@ -122,13 +122,8 @@ const UserLayout = () => {
             <img
               width={"50px"}
               height={"50px"}
-              onError={() => handleImageError(user._id)}
-              src={
-                errorImages[user._id]
-                  ? "https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                  : `${ENDIPOINT}upload/${user.photo}`
-              }
-              alt=""
+              src={"/me.jpg"}
+              alt="Savlatbek"
             />
           </Link>
         </Header>
