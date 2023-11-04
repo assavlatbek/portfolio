@@ -70,12 +70,28 @@ body {
   left: 95%;
   cursor: pointer;
   user-select: none;
+  display: flex;
+  align-items: center;
 }
 
 .user-avatar img {
   width: 40px;
   height: 40px;
   border-radius: 50px;
+}
+
+.settings-icon {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  left: 91.5%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.settings-icon svg {
+  width: 30px;
+  height: 30px;
 }
 
 @media (max-width: 600px) {

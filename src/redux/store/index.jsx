@@ -23,6 +23,12 @@ import userSkillReducer, {
 import userEducationReducer, {
   userEducationService,
 } from "../services/userEducationService";
+import userExperienceReducer, {
+  userExperienceService,
+} from "../services/userExperienceService";
+import userPortfolioReducer, {
+  userPortfolioService,
+} from "../services/userPortfolioService";
 
 const reducer = {
   skill: skillReducer,
@@ -34,6 +40,8 @@ const reducer = {
   [checkUserService.reducerPath]: checkUserReducer,
   [userSkillService.reducerPath]: userSkillReducer,
   [userEducationService.reducerPath]: userEducationReducer,
+  [userExperienceService.reducerPath]: userExperienceReducer,
+  [userPortfolioService.reducerPath]: userPortfolioReducer,
 };
 
 export const Store = configureStore({
@@ -46,7 +54,9 @@ export const Store = configureStore({
       .concat(educationService.middleware)
       .concat(checkUserService.middleware)
       .concat(userSkillService.middleware)
-      .concat(userEducationService.middleware),
+      .concat(userEducationService.middleware)
+      .concat(userExperienceService.middleware)
+      .concat(userPortfolioService.middleware),
 });
 
 const StoreProvider = ({ children }) => {

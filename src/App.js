@@ -21,6 +21,9 @@ import NotFound from "./pages/common/NotFound";
 import EducationPage from "./pages/user/EducationPage";
 import Skills from "./pages/user/Skills";
 import AdminLayout from "./layout/admin-layout";
+import Settings from "./pages/user/Settings";
+import Portfolio from "./pages/user/Portfolio";
+import Experience from "./pages/user/Experience";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -53,6 +56,9 @@ function App() {
               <Route path="profile" element={<ProfilePage />} />
               <Route path="as-education" element={<EducationPage />} />
               <Route path="as-skills" element={<Skills />} />
+              <Route path="as-experience" element={<Experience />} />
+              <Route path="as-portfolio" element={<Portfolio />} />
+              <Route path="as-settings" element={<Settings />} />
             </Route>
           </>
         ) : null}

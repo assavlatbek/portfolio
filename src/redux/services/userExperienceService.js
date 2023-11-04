@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import { ENDIPOINT, TOKEN } from "../../constant";
 
-export const educationService = createApi({
-  reducerPath: "education",
+export const userExperienceService = createApi({
+  reducerPath: "as-experience",
   baseQuery: fetchBaseQuery({
     baseUrl: `${ENDIPOINT}api/v1/`,
     prepareHeaders: (headers) => {
@@ -12,34 +12,34 @@ export const educationService = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getEducations: builder.query({
+    getUserExperiences: builder.query({
       query: (params) =>
-        `education?page=${params?.page}&search=${params?.search}`,
+        `experiences?user=${params.id}&page=${params.page}&search=${params.search}`,
       transformResponse: (res) => res,
     }),
-    getEducation: builder.mutation({
+    getUserExperience: builder.mutation({
       query: (id) => ({
-        url: `education/${id}`,
+        url: `experiences/${id}`,
         method: "GET",
       }),
     }),
-    addEducation: builder.mutation({
+    addUserExperience: builder.mutation({
       query: (body) => ({
-        url: "education",
+        url: "experiences",
         method: "POST",
         body,
       }),
     }),
-    updateEducation: builder.mutation({
+    updateUserExperience: builder.mutation({
       query: ({ id, body }) => ({
-        url: `education/${id}`,
+        url: `experiences/${id}`,
         method: "PUT",
         body,
       }),
     }),
-    deleteEducation: builder.mutation({
+    deleteUserExperience: builder.mutation({
       query: (id) => ({
-        url: `education/${id}`,
+        url: `experiences/${id}`,
         method: "DELETE",
       }),
     }),
@@ -47,11 +47,11 @@ export const educationService = createApi({
 });
 
 export const {
-  useGetEducationsQuery,
-  useGetEducationMutation,
-  useAddEducationMutation,
-  useUpdateEducationMutation,
-  useDeleteEducationMutation,
-} = educationService;
+  useGetUserExperiencesQuery,
+  useGetUserExperienceMutation,
+  useAddUserExperienceMutation,
+  useUpdateUserExperienceMutation,
+  useDeleteUserExperienceMutation,
+} = userExperienceService;
 
-export default educationService.reducer;
+export default userExperienceService.reducer;

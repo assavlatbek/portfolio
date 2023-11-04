@@ -13,15 +13,15 @@ import {
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {
-  useDeleteUserEducationMutation,
-  useAddUserEducationMutation,
-  useGetUserEducationMutation,
-  useUpdateUserEducationMutation,
-  useGetUserEducationsQuery,
-} from "../../redux/services/userEducationService";
+  useDeleteUserExperienceMutation,
+  useAddUserExperienceMutation,
+  useGetUserExperienceMutation,
+  useUpdateUserExperienceMutation,
+  useGetUserExperiencesQuery,
+} from "../../redux/services/userExperienceService";
 import Cookies from "js-cookie";
 
-const EducationPage = () => {
+const Experience = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState(1);
@@ -29,23 +29,23 @@ const EducationPage = () => {
   const [selected, setSelected] = useState(null);
 
   const params = { id: Cookies.get("user_id"), page, search };
-  const { data, isFetching, refetch } = useGetUserEducationsQuery(params);
+  const { data, isFetching, refetch } = useGetUserExperiencesQuery(params);
 
-  const [getEducation] = useGetUserEducationMutation();
-  const [addEducation] = useAddUserEducationMutation();
-  const [updateEducation] = useUpdateUserEducationMutation();
-  const [deleteEducation] = useDeleteUserEducationMutation();
+  const [getExperience] = useGetUserExperienceMutation();
+  const [addExperience] = useAddUserExperienceMutation();
+  const [updateExperience] = useUpdateUserExperienceMutation();
+  const [deleteExperience] = useDeleteUserExperienceMutation();
 
   const columns = [
     {
-      title: "Education Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Work Name",
+      dataIndex: "workName",
+      key: "workName",
     },
     {
-      title: "Level",
-      dataIndex: "level",
-      key: "level",
+      title: "Company Name",
+      dataIndex: "companyName",
+      key: "companyName",
     },
     {
       title: "Description",
@@ -70,14 +70,14 @@ const EducationPage = () => {
       render: (_, row) => {
         return (
           <Space size="middle">
-            <Button type="primary" onClick={() => editEducation(row._id)}>
+            <Button type="primary" onClick={() => editExperience(row._id)}>
               Edit
             </Button>
             <Button
               danger
               type="primary"
               onClick={async () => {
-                await deleteEducation(row._id);
+                await deleteExperience(row._id);
                 refetch();
               }}
             >
@@ -103,9 +103,9 @@ const EducationPage = () => {
     try {
       let values = await form.validateFields();
       if (selected === null) {
-        await addEducation(values);
+        await addExperience(values);
       } else {
-        await updateEducation({ id: selected, body: values });
+        await updateExperience({ id: selected, body: values });
       }
       closeModal();
       refetch();
@@ -116,11 +116,11 @@ const EducationPage = () => {
     }
   };
 
-  async function editEducation(id) {
+  async function editExperience(id) {
     try {
       setSelected(id);
       setIsModalOpen(true);
-      const { data } = await getEducation(id);
+      const { data } = await getExperience(id);
       form.setFieldsValue(data);
     } catch (err) {
       console.log(err);
@@ -138,7 +138,7 @@ const EducationPage = () => {
         title={() => (
           <div className="table-header">
             <h1 style={{ margin: "0" }}>
-              Educations <b>({data?.pagination.total})</b>
+              Experiences <b>({data?.pagination.total})</b>
             </h1>
             <Input
               onChange={handleSearch}
@@ -147,7 +147,7 @@ const EducationPage = () => {
               placeholder="Searching..."
             />
             <Button type="primary" onClick={openModal}>
-              Add Education
+              Add Experience
             </Button>
           </div>
         )}
@@ -167,15 +167,15 @@ const EducationPage = () => {
       </center>
       <br />
       <Modal
-        title={selected ? "Save old Education" : "Add new Education"}
+        title={selected ? "Save old Experience" : "Add new Experience"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={closeModal}
-        okText={selected ? "Save Education" : "Add Education"}
+        okText={selected ? "Save Experience" : "Add Experience"}
       >
         <Form
           form={form}
-          name="education"
+          name="experience"
           labelCol={{
             span: 24,
           }}
@@ -188,8 +188,8 @@ const EducationPage = () => {
           autoComplete="on"
         >
           <Form.Item
-            label="Education Name"
-            name="name"
+            label="Experience Name"
+            name="workName"
             rules={[
               {
                 required: true,
@@ -200,8 +200,8 @@ const EducationPage = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Level"
-            name="level"
+            label="Company Name"
+            name="companyName"
             rules={[
               {
                 required: true,
@@ -260,4 +260,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage;
+export default Experience;

@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import { ENDIPOINT, TOKEN } from "../../constant";
 
-export const educationService = createApi({
-  reducerPath: "education",
+export const userPortfolioService = createApi({
+  reducerPath: "portfolio",
   baseQuery: fetchBaseQuery({
     baseUrl: `${ENDIPOINT}api/v1/`,
     prepareHeaders: (headers) => {
@@ -12,34 +12,34 @@ export const educationService = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getEducations: builder.query({
+    getPortfolios: builder.query({
       query: (params) =>
-        `education?page=${params?.page}&search=${params?.search}`,
+        `portfolios?user=${params.id}&page=${params.page}&search=${params.search}`,
       transformResponse: (res) => res,
     }),
-    getEducation: builder.mutation({
+    getPortfolio: builder.mutation({
       query: (id) => ({
-        url: `education/${id}`,
+        url: `portfolios/${id}`,
         method: "GET",
       }),
     }),
-    addEducation: builder.mutation({
+    addPortfolio: builder.mutation({
       query: (body) => ({
-        url: "education",
+        url: "portfolios",
         method: "POST",
         body,
       }),
     }),
-    updateEducation: builder.mutation({
+    updatePortfolio: builder.mutation({
       query: ({ id, body }) => ({
-        url: `education/${id}`,
+        url: `portfolios/${id}`,
         method: "PUT",
         body,
       }),
     }),
-    deleteEducation: builder.mutation({
+    deletePortfolio: builder.mutation({
       query: (id) => ({
-        url: `education/${id}`,
+        url: `portfolios/${id}`,
         method: "DELETE",
       }),
     }),
@@ -47,11 +47,11 @@ export const educationService = createApi({
 });
 
 export const {
-  useGetEducationsQuery,
-  useGetEducationMutation,
-  useAddEducationMutation,
-  useUpdateEducationMutation,
-  useDeleteEducationMutation,
-} = educationService;
+  useGetPortfoliosQuery,
+  useGetPortfolioMutation,
+  useAddPortfolioMutation,
+  useUpdatePortfolioMutation,
+  useDeletePortfolioMutation,
+} = userPortfolioService;
 
-export default educationService.reducer;
+export default userPortfolioService.reducer;

@@ -4,18 +4,18 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
   LogoutOutlined,
+  AuditOutlined,
+  SettingOutlined,
   BankOutlined,
 } from "@ant-design/icons";
 
 import "./style.css";
 
 import { Layout, Menu, Button } from "antd";
-import request from "../../server";
-import { ENDIPOINT } from "../../constant";
-import Cookies from "js-cookie";
 
 const { Header, Sider, Content } = Layout;
 
@@ -23,25 +23,6 @@ const UserLayout = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({});
-  const [errorImages, setErrorImages] = useState({});
-
-  const handleImageError = (postId) => {
-    setErrorImages((prevErrors) => ({
-      ...prevErrors,
-      [postId]: true,
-    }));
-  };
-
-  const getUserData = async () => {
-    const res = await request.get("users/" + Cookies.get("user_id"));
-    console.log(res);
-    setUser(res.data);
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -96,6 +77,16 @@ const UserLayout = () => {
               label: <Link to="/as-education">Education</Link>,
             },
             {
+              key: "/experience",
+              icon: <AuditOutlined />,
+              label: <Link to="/as-experience">Experience</Link>,
+            },
+            {
+              key: "/portfolio",
+              icon: <UploadOutlined />,
+              label: <Link to="/as-portfolio">Portfolio</Link>,
+            },
+            {
               key: "/logout",
               style: styles,
               icon: <LogoutOutlined />,
@@ -117,8 +108,20 @@ const UserLayout = () => {
               height: 64,
             }}
           />
-
-          <Link to={"/account"} className="user-avatar">
+          <Link
+            className="settings-icon"
+            onClick={() => {
+              window.location.href = "/as-settings";
+            }}
+          >
+            <SettingOutlined />
+          </Link>
+          <Link
+            onClick={() => {
+              window.location.href = "/profile";
+            }}
+            className="user-avatar"
+          >
             <img
               width={"50px"}
               height={"50px"}

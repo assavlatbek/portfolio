@@ -1,83 +1,66 @@
 import { Fragment, useState } from "react";
+import { Button, Form, Input, Modal, Pagination, Space, Table } from "antd";
 import {
-  Button,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Modal,
-  Pagination,
-  Row,
-  Space,
-  Table,
-} from "antd";
-import TextArea from "antd/es/input/TextArea";
-import {
-  useDeleteUserEducationMutation,
-  useAddUserEducationMutation,
-  useGetUserEducationMutation,
-  useUpdateUserEducationMutation,
-  useGetUserEducationsQuery,
-} from "../../redux/services/userEducationService";
+  useAddPortfolioMutation,
+  useDeletePortfolioMutation,
+  useGetPortfolioMutation,
+  useGetPortfoliosQuery,
+  useUpdatePortfolioMutation,
+} from "../../redux/services/userPortfolioService";
 import Cookies from "js-cookie";
 
-const EducationPage = () => {
+const Portfolio = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
+  const params = {
+    id: Cookies.get("user_id"),
+    page,
+    search,
+  };
+  const { data, isFetching, refetch } = useGetPortfoliosQuery(params);
 
-  const params = { id: Cookies.get("user_id"), page, search };
-  const { data, isFetching, refetch } = useGetUserEducationsQuery(params);
-
-  const [getEducation] = useGetUserEducationMutation();
-  const [addEducation] = useAddUserEducationMutation();
-  const [updateEducation] = useUpdateUserEducationMutation();
-  const [deleteEducation] = useDeleteUserEducationMutation();
+  const [getPortfolio] = useGetPortfolioMutation();
+  const [addPortfolio] = useAddPortfolioMutation();
+  const [updatePortfolio] = useUpdatePortfolioMutation();
+  const [deletePortfolio] = useDeletePortfolioMutation();
 
   const columns = [
     {
-      title: "Education Name",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Level",
-      dataIndex: "level",
-      key: "level",
+      title: "Url",
+      dataIndex: "url",
+      key: "url",
+      render: (url) => (
+        <a rel="noreferrer" target="_blank" href={url}>
+          {url}
+        </a>
+      ),
     },
     {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      render: (text) => (text.length > 50 ? `${text.slice(0, 50)}...` : text),
-    },
-    {
-      title: "Start Date",
-      dataIndex: "startDate",
-      key: "startDate",
-      render: (text) => `${text.slice(0, 10)}`,
-    },
-    {
-      title: "End Date",
-      dataIndex: "endDate",
-      key: "endDate",
-      render: (text) => `${text.slice(0, 10)}`,
     },
     {
       title: "Action",
       render: (_, row) => {
         return (
           <Space size="middle">
-            <Button type="primary" onClick={() => editEducation(row._id)}>
+            <Button type="primary" onClick={() => editPortfolio(row._id)}>
               Edit
             </Button>
             <Button
               danger
               type="primary"
               onClick={async () => {
-                await deleteEducation(row._id);
+                await deletePortfolio(row._id);
                 refetch();
               }}
             >
@@ -102,30 +85,32 @@ const EducationPage = () => {
   const handleOk = async () => {
     try {
       let values = await form.validateFields();
+      values.photo = "6521485e1b06670014733226";
       if (selected === null) {
-        await addEducation(values);
+        await addPortfolio(values);
       } else {
-        await updateEducation({ id: selected, body: values });
+        await updatePortfolio({ id: selected, body: values });
       }
       closeModal();
       refetch();
-      setSelected(null);
       form.resetFields();
+      setSelected(null);
     } catch (err) {
       console.log(err);
     }
   };
 
-  async function editEducation(id) {
+  async function editPortfolio(id) {
     try {
       setSelected(id);
       setIsModalOpen(true);
-      const { data } = await getEducation(id);
+      const { data } = await getPortfolio(id);
       form.setFieldsValue(data);
     } catch (err) {
       console.log(err);
     }
   }
+
   function handleSearch(e) {
     setSearch(e.target.value);
   }
@@ -138,7 +123,7 @@ const EducationPage = () => {
         title={() => (
           <div className="table-header">
             <h1 style={{ margin: "0" }}>
-              Educations <b>({data?.pagination.total})</b>
+              Portfolios <b>({data?.pagination.total})</b>
             </h1>
             <Input
               onChange={handleSearch}
@@ -147,7 +132,7 @@ const EducationPage = () => {
               placeholder="Searching..."
             />
             <Button type="primary" onClick={openModal}>
-              Add Education
+              Add portfolio
             </Button>
           </div>
         )}
@@ -157,7 +142,6 @@ const EducationPage = () => {
         pagination={false}
       />
       <br />
-
       <center>
         <Pagination
           total={data?.pagination.total}
@@ -167,15 +151,15 @@ const EducationPage = () => {
       </center>
       <br />
       <Modal
-        title={selected ? "Save old Education" : "Add new Education"}
+        title={selected ? "Save old portfolio" : "Add new portfolio"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={closeModal}
-        okText={selected ? "Save Education" : "Add Education"}
+        okText={selected ? "Save portfolio" : "Add portfolio"}
       >
         <Form
           form={form}
-          name="education"
+          name="portfolio"
           labelCol={{
             span: 24,
           }}
@@ -185,10 +169,10 @@ const EducationPage = () => {
           style={{
             maxWidth: 600,
           }}
-          autoComplete="on"
+          autoComplete="off"
         >
           <Form.Item
-            label="Education Name"
+            label="Portfolio name"
             name="name"
             rules={[
               {
@@ -200,12 +184,12 @@ const EducationPage = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Level"
-            name="level"
+            label="Portfolio url"
+            name="url"
             rules={[
               {
                 required: true,
-                message: "Please fill !",
+                message: "Please fill!",
               },
             ]}
           >
@@ -217,47 +201,16 @@ const EducationPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please fill !",
+                message: "Please fill!",
               },
             ]}
           >
-            <TextArea />
+            <Input.TextArea />
           </Form.Item>
-          <Row>
-            <Col span={12}>
-              <Form.Item
-                label="Start Date"
-                name="startDate"
-                style={{ marginRight: "10px" }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please fill !",
-                  },
-                ]}
-              >
-                <InputNumber style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="End Date"
-                name="endDate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please fill !",
-                  },
-                ]}
-              >
-                <InputNumber style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-          </Row>
         </Form>
       </Modal>
     </Fragment>
   );
 };
 
-export default EducationPage;
+export default Portfolio;
