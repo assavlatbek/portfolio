@@ -22,7 +22,7 @@
 .dashboard-card-container .icon {
   font-size: 20px;
   margin-left: -20px;
-  background: #ff3401;
+  background: rgb(235, 235, 0);
   padding: 10px;
   border-radius: 10px;
 }
@@ -36,25 +36,17 @@
   margin-bottom: 4px;
   text-align: center;
 }
-.dashboard-card .txt p::before {
-  content: "";
-  position: absolute;
-  top: 64%;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: rgb(229, 255, 0);
+.dashboard-card .txt p {
+  color: yellow;
+  font-weight: 900;
+  border-bottom: 3px solid yellow;
 }
 .bigTXT h3 {
   transition: 0.7s;
   font-size: 22px;
 }
 .dashboard-page-name {
-  background-color: #85ffbd;
-  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  color: yellow;
   font-weight: bold;
   font-size: 30px;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
 }
